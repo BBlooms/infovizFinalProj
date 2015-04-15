@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <style>
+
+    html body {
+        margin: 0;
+        padding: 0;
+    }
+
+    p.title {
+        font-size: 20px;
+    }
+
+    p {
+      text-align: left;
+      font-family: "arial";
+    }
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .map {
+        position: absolute;
+        top: 50px;
+        width:800px;
+    }
+    .nav {
+        position: relative;
+        top: 600px;
+    }
+    </style>
+    <!--<link rel="stylesheet" href="../vis-story/css/style.css">-->
+    <link rel="stylesheet" href="../main.css">
+</head>
+<body>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="datamaps.world.min.js"></script>
+
+    <header>
+        <a href="../index.html">Home</a>
+        <a href="../vis-story/index.html">Blockchain</a>
+        <a href="../vis-treemap/treemap.html">Block Anatomy</a>
+        <a href="../vis-live-graph/index.html">Live Tx</a>
+        <a class="active" href="index.html">Global Nodes</a>
+        <a href="../vis-price/index.html">Price</a>
+        <a href="../vis-balances/index.html">Address Balances</a>
+        <span class="stretch"></span>
+    </header>
+
+    <img src="choropleth.svg"/>
+
+    <div class="map" id="basic_choropleth"></div>
+    <script data-info="Map source for basic choropleth">
+    var basic_choropleth = new Datamap({
+      element: document.getElementById("basic_choropleth"),
+      geographyConfig: {
+        highlightOnHover: false,
+        popupTemplate: function(geo, data) {
+          return ['<div class="hoverinfo"><strong>',
+                  geo.properties.name + ', ' + data.nodes + ' nodes','</strong></div>'].join('');
+        }
+      },
+      projection: 'mercator',
+      fills: {
+
+        9: "#ffffcc",
+        8: "#ffeda0",
+        7: "#fed976",
+        6: "#feb24c",
+        5: "#fd8d3c",
+        4: "#fc4e2a",
+        3: "#e31a1c",
+        2: "#bd0026",
+        1: "#800026",    
+        defaultFill: "#CAC7BF",
+      },
+      
+      data: {
+        USA: {fillKey:"1", nodes: 900},
+        DEU:  {fillKey:"4", nodes: 534},
+        GBR:  {fillKey:"4", nodes: 507},
+        CAN:  {fillKey:"5", nodes: 476},
+        FRA:  {fillKey:"5", nodes: 400},
+        RUS:  {fillKey:"6", nodes: 341},
+        NLD:  {fillKey:"6", nodes: 332},
+        CHN:  {fillKey:"7", nodes: 288},
+        SWE:  {fillKey:"8", nodes: 166},
+        UKR:  {fillKey:"8", nodes: 145},
+        AUS:  {fillKey:"8", nodes: 140},
+        CHE:  {fillKey:"8", nodes: 106},
+        ITA:  {fillKey:"9", nodes: 90},
+        BGR:  {fillKey:"9", nodes: 88},
+        POL:  {fillKey:"9", nodes: 84},
+        JPN:  {fillKey:"9", nodes: 75},
+        ESP:  {fillKey:"9", nodes: 75},
+        NOR:  {fillKey:"9", nodes: 74},
+        FIN:  {fillKey:"9", nodes: 63},
+        CZE:  {fillKey:"9", nodes: 62},
+        TWN:  {fillKey:"9", nodes: 59},
+        BRA:  {fillKey:"9", nodes: 56},
+        BEL:  {fillKey:"9", nodes: 55},
+        HKG:  {fillKey:"9", nodes: 47},
+        AUT:  {fillKey:"9", nodes: 47},
+        PRT:  {fillKey:"9", nodes: 41},
+        SGP:  {fillKey:"9", nodes: 40},
+        KOR:  {fillKey:"9", nodes: 37},
+        ROM:  {fillKey:"9", nodes: 35},
+        LTU:  {fillKey:"9", nodes: 35},
+        GRC:  {fillKey:"9", nodes: 31},
+        ISR:  {fillKey:"9", nodes: 31},
+        IRL:  {fillKey:"9", nodes: 31},
+        DNK:  {fillKey:"9", nodes: 30},
+        HUN:  {fillKey:"9", nodes: 29},
+        ARG:  {fillKey:"9", nodes: 28},
+        SVN:  {fillKey:"9", nodes: 25},
+        SVK:  {fillKey:"9", nodes: 24},
+        MYS:  {fillKey:"9", nodes: 18},
+        NZL:  {fillKey:"9", nodes: 18},
+        TUR:  {fillKey:"9", nodes: 15},
+        VEN:  {fillKey:"9", nodes: 14},
+        EST:  {fillKey:"9", nodes: 13},
+        ISL:  {fillKey:"9", nodes: 13},
+        MDA:  {fillKey:"9", nodes: 12},
+        LVA:  {fillKey:"9", nodes: 12},
+        ZAF:  {fillKey:"9", nodes: 11},
+        MEX:  {fillKey:"9", nodes: 11},
+        THA:  {fillKey:"9", nodes: 11},
+        PHL:  {fillKey:"9", nodes: 9},
+        KAZ:  {fillKey:"9", nodes: 9},
+        IDN:  {fillKey:"9", nodes: 9},
+        BLR:  {fillKey:"9", nodes: 8},
+        SRB:  {fillKey:"9", nodes: 7},
+        IND:  {fillKey:"9", nodes: 7},
+        LUX:  {fillKey:"9", nodes: 6},
+        ARE:  {fillKey:"9", nodes: 6},
+        VNM:  {fillKey:"9", nodes: 6},
+        CRI:  {fillKey:"9", nodes: 5},
+        HRV:  {fillKey:"9", nodes: 4},
+        PAN:  {fillKey:"9", nodes: 4},
+        PER:  {fillKey:"9", nodes: 4},
+        CHL:  {fillKey:"9", nodes: 4},
+        GEO:  {fillKey:"9", nodes: 3},
+        COL:  {fillKey:"9", nodes: 3},
+        ARM:  {fillKey:"9", nodes: 3},
+        JAM:  {fillKey:"9", nodes: 2},
+        MAR:  {fillKey:"9", nodes: 2},
+        MLT:  {fillKey:"9", nodes: 2},
+        NCL:  {fillKey:"9", nodes: 2},
+        CYP:  {fillKey:"9", nodes: 2},
+        KGZ:  {fillKey:"9", nodes: 2},
+        DZA:  {fillKey:"9", nodes: 2},
+        MKD:  {fillKey:"9", nodes: 2},
+        IRN:  {fillKey:"9", nodes: 2},
+        QAT:  {fillKey:"9", nodes: 2},
+        BIH:  {fillKey:"9", nodes: 1},
+        BLZ:  {fillKey:"9", nodes: 1},
+        PRI:  {fillKey:"9", nodes: 1},
+        PAK:  {fillKey:"9", nodes: 1},
+        EGY:  {fillKey:"9", nodes: 1},
+        CYM:  {fillKey:"9", nodes: 1},
+        UZB:  {fillKey:"9", nodes: 1},
+        SAU:  {fillKey:"9", nodes: 1},
+        DOM:  {fillKey:"9", nodes: 1},
+        LBN:  {fillKey:"9", nodes: 1},
+        TTO:  {fillKey:"9", nodes: 1},
+      }
+    });
+
+    </script>
+
+    <div class="nav">
+        <a class="bottom" href="../vis-live-graph/index.html">&#8678; Previous: Transactions occur in real time</a>
+        <a class="bottom right" href="../vis-price/index.html">Next: The price of a Bitcoin &#8680;</a>
+    </div>
+
+</body>
+</html>
